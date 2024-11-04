@@ -48,7 +48,22 @@ void insertion_sort(std::vector<int>& values) {
     }
 }
 
-
+// Selection Sort
+void selection_sort(std::vector<int>& values){
+    for (int i = 0; i < (values.size() - 1); i++){
+        int min_pos = i;
+        for (int j = i + 1; j < values.size(); j++){
+            if (values[j] < values[min_pos]){
+                min_pos = j;
+            }
+        }
+        if (min_pos != i){
+            int temp = values[i];
+            values[i] = values[min_pos];
+            values[min_pos] =  temp;
+        }
+    }
+}
 
 // Testing
 void test_sorting(void (*sort_func)(std::vector<int>&), std::vector<int>& values, const std::string& algorithm_name) {
@@ -73,18 +88,18 @@ int main() {
 
     // Test with random values
     fill_random(values, max_value);
-    std::cout << "Testing Insertion Sort on random values...\n";
-    test_sorting(sortt, values, "Insertion Sort");
+    std::cout << "Testing Selection Sort on random values...\n";
+    test_sorting(sortt, values, "Selectionion Sort");
 
     // Test with incremental values
     fill_incremental(values, max_value);
-    std::cout << "Testing Insertion Sort on incremental values...\n";
-    test_sorting(sortt, values, "Insertion Sort");
+    std::cout << "Testing Selection Sort on incremental values...\n";
+    test_sorting(sortt, values, "Selection Sort");
 
     // Test with decremental values
     fill_decremental(values, max_value);
-    std::cout << "Testing Insertion Sort on decremental values...\n";
-    test_sorting(sortt, values, "Insertion Sort");
+    std::cout << "Testing Selection Sort on decremental values...\n";
+    test_sorting(sortt, values, "Selection Sort");
 
     return 0;
 }
