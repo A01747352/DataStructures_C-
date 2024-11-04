@@ -35,7 +35,18 @@ void fill_decremental(std::vector<int>& values, int max_value)
     }
 }
 
-
+// Insertion Sort
+void insertion_sort(std::vector<int>& values) {
+    for (int i = 1; i < values.size(); i++) {
+        int key = values[i];
+        int j = i - 1;
+        while (j >= 0 && values[j] > key) {
+            values[j + 1] = values[j];
+            j = j - 1;
+        }
+        values[j + 1] = key;
+    }
+}
 
 
 
@@ -59,6 +70,21 @@ int main() {
     const int vector_size = 100;
     const int max_value = 999;
     std::vector<int> values(vector_size);
+
+    // Test with random values
+    fill_random(values, max_value);
+    std::cout << "Testing Insertion Sort on random values...\n";
+    test_sorting(sortt, values, "Insertion Sort");
+
+    // Test with incremental values
+    fill_incremental(values, max_value);
+    std::cout << "Testing Insertion Sort on incremental values...\n";
+    test_sorting(sortt, values, "Insertion Sort");
+
+    // Test with decremental values
+    fill_decremental(values, max_value);
+    std::cout << "Testing Insertion Sort on decremental values...\n";
+    test_sorting(sortt, values, "Insertion Sort");
 
     return 0;
 }
